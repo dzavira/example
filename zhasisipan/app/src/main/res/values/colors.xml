@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#000000</color>
+    <color name="colorPrimaryDark">#3700B3</color>
+    <color name="colorAccent">#03DAC5</color>
+    <color name="cblueyoung">#38B8F8</color>
+    <color name="cblue">#1C9BDA</color>
+    <color name="ijo">#24AC5B</color>
+    <color name="putihabu">#CCC8C8</color>
+    <color name="softputihabu">#F4F4F4</color>
+    <color name="orange">#f87838</color>
+    <color name="dark">#352F30</color>
+    <color name="butek">#25D1CFCF</color>
+    <color name="putih">#FFFFFF</color>
+    <color name="kuning">#FFEB3B</color>
+    <color name="darktext">#1F1D1D</color>
+</resources>
