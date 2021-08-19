@@ -1,0 +1,4 @@
+rootProject.name='hslScanner'
+include ':app'
+
+include ':openCVLibrary341'

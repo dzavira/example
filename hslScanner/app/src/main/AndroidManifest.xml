@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="dev.mrzha.scan01">
+    <!-- <uses-feature android:name="android.hardware.camera" -->
+    <!-- android:required="true" /> -->
+    <uses-permission android:name="android.permission.CAMERA" /> <!-- <uses-feature android:name="android.hardware.camera" /> -->
+    <uses-feature android:name="android.hardware.camera.autofocus" />
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/lgscrt"
+        android:label="@string/app_name"
+        android:roundIcon="@drawable/lgscrt"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name="dev.mrzha.scan01.check">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name="dev.mrzha.scan01.openbc" />
+        <activity
+            android:name="dev.mrzha.scan01.devscan"
+            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" />
+        <activity
+            android:name="dev.mrzha.scan01.main_manu"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
+        <activity
+            android:name="dev.mrzha.scan01.fire_scan"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
+        <activity
+            android:name="dev.mrzha.scan01.scan_2"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
+        <activity
+            android:name="dev.mrzha.scan01.f_scan"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
+        <activity
+            android:name="dev.mrzha.scan01.MainActivity"
+            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" />
+        <activity
+            android:name="dev.mrzha.scan01.SplasScreen"
+            android:theme="@style/Theme.AppCompat.NoActionBar">
+
+        </activity>
+    </application>
+
+</manifest>

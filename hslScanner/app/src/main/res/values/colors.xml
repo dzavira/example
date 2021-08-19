@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#6200EE</color>
+    <color name="colorPrimaryDark">#3700B3</color>
+    <color name="colorAccent">#03DAC5</color>
+    <color name="backgroundColor">#052404</color>
+    <color name="putihabu">#f5f5f5</color>
+    <color name="hitam">#030000</color>
+    <color name="lighON">#e3954c</color>
+    <color name="lighac">#00BCD4</color>
+    <color name="putih">#ffffff</color>
+    <color name="orange">#f87838</color>
+    <color name="primDarkBlue">#2d3238</color>
+    <color name="cblueyoung">#38B8F8</color>
+    <color name="cblue">#1C9BDA</color>
+    <color name="ijo">#24AC5B</color>
+    <color name="softputihabu">#F4F4F4</color>
+    <color name="dark">#352F30</color>
+    <color name="butek">#25D1CFCF</color>
+    <color name="kuning">#FFEB3B</color>
+    <color name="darktext">#1F1D1D</color>
+</resources>
