@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:opencv="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".open">
+    <ToggleButton
+        android:visibility="gone"
+        android:id="@+id/onOffFlashlight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textOn="Turn Off"
+        android:textOff="Turn On"
+        android:checked="false"
+        android:text="Turn On/Off Camera LED/ Flashlight Android" />
+    <org.opencv.android.JavaCameraView
+        android:id="@+id/cameraViewer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        opencv:show_fps="true" />
+
+    <TextView
+        android:id="@+id/t_result"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/b_lagi"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginEnd="0dp"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/btnbrightround"
+        android:textAlignment="center"
+        android:textColor="#FFFFFF"
+        android:visibility="gone"
+        android:textSize="18sp" />
+
+    <Button
+        android:id="@+id/b_lagi"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="50dp"
+
+        android:layout_marginEnd="50dp"
+        android:layout_marginBottom="25dp"
+        android:background="@drawable/bgplus"
+        android:text="Scan Ulang"
+        android:textAlignment="center"
+        android:textColor="@color/putih"
+        android:textSize="18sp"
+        />
+</RelativeLayout>

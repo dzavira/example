@@ -1,0 +1,3 @@
+[submodule "ANDROMEDA/ios/lotus/ltsarc/AlamofireImage"]
+	path = ANDROMEDA/ios/lotus/ltsarc/AlamofireImage
+	url = https://github.com/Alamofire/AlamofireImage.git

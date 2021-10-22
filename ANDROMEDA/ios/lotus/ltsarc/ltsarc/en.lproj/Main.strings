@@ -1,0 +1,39 @@
+
+/* Class = "UILabel"; text = "Product"; ObjectID = "5rb-51-gRH"; */
+"5rb-51-gRH.text" = "Product";
+
+/* Class = "UITabBarItem"; title = "Price"; ObjectID = "CyN-Nr-DyL"; */
+"CyN-Nr-DyL.title" = "Price";
+
+/* Class = "UILabel"; text = "Weight"; ObjectID = "KBg-xu-zSm"; */
+"KBg-xu-zSm.text" = "Weight";
+
+/* Class = "UITabBarItem"; title = "Home"; ObjectID = "KSX-YT-uPa"; */
+"KSX-YT-uPa.title" = "Home";
+
+/* Class = "UIBarButtonItem"; title = "kembali"; ObjectID = "ONc-OG-efN"; */
+"ONc-OG-efN.title" = "kembali";
+
+/* Class = "UITabBarItem"; title = "Setting"; ObjectID = "Rdl-Rd-g6z"; */
+"Rdl-Rd-g6z.title" = "Setting";
+
+/* Class = "UITabBarItem"; title = "Contact Us"; ObjectID = "SsD-Ib-CZv"; */
+"SsD-Ib-CZv.title" = "Contact Us";
+
+/* Class = "UINavigationItem"; title = "Home"; ObjectID = "Uap-PU-MWA"; */
+"Uap-PU-MWA.title" = "Home";
+
+/* Class = "UIBarButtonItem"; title = "Back"; ObjectID = "VIg-6L-UM7"; */
+"VIg-6L-UM7.title" = "Back";
+
+/* Class = "UIBarButtonItem"; title = "Back"; ObjectID = "d3b-XV-sdh"; */
+"d3b-XV-sdh.title" = "Back";
+
+/* Class = "UILabel"; text = "buyback"; ObjectID = "lHK-RU-wae"; */
+"lHK-RU-wae.text" = "buyback";
+
+/* Class = "UILabel"; text = "Price"; ObjectID = "qoy-ff-PcO"; */
+"qoy-ff-PcO.text" = "Price";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "upS-YA-qKU"; */
+"upS-YA-qKU.normalTitle" = "Button";
