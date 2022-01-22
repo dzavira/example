@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.graphics.Point;
+import android.os.Build;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.SurfaceView;
@@ -13,8 +14,12 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import androidx.annotation.AttrRes;
+import androidx.annotation.ColorInt;
+import androidx.annotation.FloatRange;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.Px;
+import androidx.annotation.RequiresApi;
 import androidx.annotation.StyleRes;
 
 import com.dzavira.example.R;
@@ -48,13 +53,28 @@ public class ScanView extends ViewGroup {
     private int mFlashButtonColor;
     private int mFocusAreaSize;
 
-    public ScanView(Context context) {
+    public ScanView(@NonNull final Context context) {
         super(context);
         initialize(context, null, 0, 0);
     }
+    public ScanView(@NonNull final Context context,@Nullable final AttributeSet attrs) {
+        super(context, attrs);
+        initialize(context, attrs, 0, 0);
+    }
 
+    public ScanView(@NonNull final Context context,@Nullable final AttributeSet attrs
+            ,@AttrRes final int defStyleAttr) {
+        super(context, attrs, defStyleAttr);
+        initialize(context, attrs, defStyleAttr, 0);
+    }
+    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
+    public ScanView(final Context context,final AttributeSet attrs,@AttrRes final int defStyleAttr,
+                    @StyleRes final int defStyleRes) {
+        super(context, attrs, defStyleAttr, defStyleRes);
+        initialize(context, attrs, defStyleAttr, defStyleRes);
+    }
     private void initialize(@NonNull final Context context, @Nullable final AttributeSet attrs,
-                            @AttrRes final int defStyleAttr, @StyleRes final int defStyleRe) {
+                            @AttrRes final int defStyleAttr, @StyleRes final int defStyleRes) {
         mPreviewView = new SurfaceView(context);
         mPreviewView.setLayoutParams(
                 new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
@@ -92,6 +112,7 @@ public class ScanView extends ViewGroup {
         else {
             TypedArray a = null;
             try {
+
                 a = context.getTheme()
                         .obtainStyledAttributes(attrs, R.styleable.CodeScanner, defStyleAttr,
                                 defStyleRes);
@@ -151,7 +172,7 @@ public class ScanView extends ViewGroup {
     @Override
     @SuppressLint("ClickableViewAccessibility")
     public boolean onTouchEvent(@NonNull final MotionEvent event) {
-        final CodeScanner codeScanner = mCodeScanner;
+        final CodeScan codeScanner = mCodeScanner;
         final Rect frameRect = getFrameRect();
         final int x = (int) event.getX();
         final int y = (int) event.getY();
@@ -165,20 +186,230 @@ public class ScanView extends ViewGroup {
         }
         return super.onTouchEvent(event);
     }
-
-
-    public ScanView(Context context, AttributeSet attrs) {
-        super(context, attrs);
+    @ColorInt
+    public int getMaskColor() {
+        return mViewFinderView.getMaskColor();
+    }
+    public void setMaskColor(@ColorInt final int color) {
+        mViewFinderView.setMaskColor(color);
+    }
+    @ColorInt
+    public int getFrameColor() {
+        return mViewFinderView.getFrameColor();
+    }
+    public void setFrameColor(@ColorInt final int color) {
+        mViewFinderView.setFrameColor(color);
+    }
+    @Px
+    public int getFrameThickness() {
+        return mViewFinderView.getFrameThickness();
+    }
+    public void setFrameThickness(@Px final int thickness) {
+        if (thickness < 0) {
+            throw new IllegalArgumentException("Frame thickness can't be negative");
+        }
+        mViewFinderView.setFrameThickness(thickness);
+    }
+    @Px
+    public int getFrameCornersSize() {
+        return mViewFinderView.getFrameCornersSize();
+    }
+    public void setFrameCornersSize(@Px final int size) {
+        if (size < 0) {
+            throw new IllegalArgumentException("Frame corners size can't be negative");
+        }
+        mViewFinderView.setFrameCornersSize(size);
+    }
+    @Px
+    public int getFrameCornersRadius() {
+        return mViewFinderView.getFrameCornersRadius();
+    }
+    public void setFrameCornersRadius(@Px final int radius) {
+        if (radius < 0) {
+            throw new IllegalArgumentException("Frame corners radius can't be negative");
+        }
+        mViewFinderView.setFrameCornersRadius(radius);
+    }
+    @FloatRange(from = 0.1, to = 1.0)
+    public float getFrameSize() {
+        return mViewFinderView.getFrameSize();
+    }
+    public void setFrameSize(@FloatRange(from = 0.1, to = 1) final float size) {
+        if (size < 0.1 || size > 1) {
+            throw new IllegalArgumentException(
+                    "Max frame size value should be between 0.1 and 1, inclusive");
+        }
+        mViewFinderView.setFrameSize(size);
+    }
+    @FloatRange(from = 0, fromInclusive = false)
+    public float getFrameAspectRatioWidth() {
+        return mViewFinderView.getFrameAspectRatioWidth();
+    }
+    public void setFrameAspectRatioWidth(
+            @FloatRange(from = 0, fromInclusive = false) final float ratioWidth) {
+        if (ratioWidth <= 0) {
+            throw new IllegalArgumentException(
+                    "Frame aspect ratio values should be greater than zero");
+        }
+        mViewFinderView.setFrameAspectRatioWidth(ratioWidth);
+    }
+    @FloatRange(from = 0, fromInclusive = false)
+    public float getFrameAspectRatioHeight() {
+        return mViewFinderView.getFrameAspectRatioHeight();
+    }
+    public void setFrameAspectRatioHeight(
+            @FloatRange(from = 0, fromInclusive = false) final float ratioHeight) {
+        if (ratioHeight <= 0) {
+            throw new IllegalArgumentException(
+                    "Frame aspect ratio values should be greater than zero");
+        }
+        mViewFinderView.setFrameAspectRatioHeight(ratioHeight);
+    }
+    public void setFrameAspectRatio(
+            @FloatRange(from = 0, fromInclusive = false) final float ratioWidth,
+            @FloatRange(from = 0, fromInclusive = false) final float ratioHeight) {
+        if (ratioWidth <= 0 || ratioHeight <= 0) {
+            throw new IllegalArgumentException(
+                    "Frame aspect ratio values should be greater than zero");
+        }
+        mViewFinderView.setFrameAspectRatio(ratioWidth, ratioHeight);
+    }
+    public boolean isAutoFocusButtonVisible() {
+        return mAutoFocusButton.getVisibility() == VISIBLE;
+    }
+    public void setAutoFocusButtonVisible(final boolean visible) {
+        mAutoFocusButton.setVisibility(visible ? VISIBLE : INVISIBLE);
+    }
+    public boolean isMaskVisible() {
+        return mViewFinderView.getVisibility() == VISIBLE;
+    }
+    public void setMaskVisible(final boolean visible) {
+        mViewFinderView.setVisibility(visible ? VISIBLE : INVISIBLE);
+    }
+    public boolean isFlashButtonVisible() {
+        return mFlashButton.getVisibility() == VISIBLE;
+    }
+    public void setFlashButtonVisible(final boolean visible) {
+        mFlashButton.setVisibility(visible ? VISIBLE : INVISIBLE);
+    }
+    @ColorInt
+    public int getAutoFocusButtonColor() {
+        return mAutoFocusButtonColor;
+    }
+    public void setAutoFocusButtonColor(@ColorInt final int color) {
+        mAutoFocusButtonColor = color;
+        mAutoFocusButton.setColorFilter(color);
+    }
+    @ColorInt
+    public int getFlashButtonColor() {
+        return mFlashButtonColor;
+    }
+    public void setFlashButtonColor(@ColorInt final int color) {
+        mFlashButtonColor = color;
+        mFlashButton.setColorFilter(color);
     }
 
-    public ScanView(Context context, AttributeSet attrs, int defStyleAttr) {
-        super(context, attrs, defStyleAttr);
+    @NonNull
+    SurfaceView getPreviewView() {
+        return mPreviewView;
     }
 
-    public ScanView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
-        super(context, attrs, defStyleAttr, defStyleRes);
+    @NonNull
+    ViewFinder getViewFinderView() {
+        return mViewFinderView;
+    }
+
+    @Nullable
+    Rect getFrameRect() {
+        return mViewFinderView.getFrameRect();
+    }
+
+    void setPreviewSize(@Nullable final Point previewSize) {
+        mPreviewSize = previewSize;
+        requestLayout();
+    }
+
+    void setSizeListener(@Nullable final SizeListener sizeListener) {
+        mSizeListener = sizeListener;
+    }
+
+    void setCodeScanner(@NonNull final CodeScan codeScanner) {
+        if (mCodeScanner != null) {
+            throw new IllegalStateException("Code scanner has already been set");
+        }
+        mCodeScanner = codeScanner;
+        setAutoFocusEnabled(codeScanner.isAutoFocusEnabled());
+        setFlashEnabled(codeScanner.isFlashEnabled());
+    }
+    void setAutoFocusEnabled(final boolean enabled) {
+        mAutoFocusButton.setImageResource(enabled ? R.drawable.ic_code_scanner_auto_focus_on :
+                R.drawable.ic_code_scanner_auto_focus_off);
+    }
+
+    void setFlashEnabled(final boolean enabled) {
+        mFlashButton.setImageResource(enabled ? R.drawable.ic_code_scanner_flash_on :
+                R.drawable.ic_code_scanner_flash_off);
+    }
+
+    private void performLayout(final int width, final int height) {
+        final Point previewSize = mPreviewSize;
+        if (previewSize == null) {
+            mPreviewView.layout(0, 0, width, height);
+        } else {
+            int frameLeft = 0;
+            int frameTop = 0;
+            int frameRight = width;
+            int frameBottom = height;
+            final int previewWidth = previewSize.getX();
+            if (previewWidth > width) {
+                final int d = (previewWidth - width) / 2;
+                frameLeft -= d;
+                frameRight += d;
+            }
+            final int previewHeight = previewSize.getY();
+            if (previewHeight > height) {
+                final int d = (previewHeight - height) / 2;
+                frameTop -= d;
+                frameBottom += d;
+            }
+            mPreviewView.layout(frameLeft, frameTop, frameRight, frameBottom);
+        }
+        mViewFinderView.layout(0, 0, width, height);
+        final int buttonSize = mButtonSize;
+        mAutoFocusButton.layout(0, 0, buttonSize, buttonSize);
+        mFlashButton.layout(width - buttonSize, 0, width, buttonSize);
     }
     interface SizeListener {
         void onSizeChanged(int width, int height);
     }
+    private final class AutoFocusClickListener implements OnClickListener {
+        @Override
+        public void onClick(final View view) {
+            final CodeScan scanner = mCodeScanner;
+            if (scanner == null || !scanner.isAutoFocusSupportedOrUnknown()) {
+                return;
+            }
+            final boolean enabled = !scanner.isAutoFocusEnabled();
+            scanner.setAutoFocusEnabled(enabled);
+            setAutoFocusEnabled(enabled);
+        }
+    }
+    private final class FlashClickListener implements OnClickListener {
+        @Override
+        public void onClick(final View view) {
+            final CodeScan scanner = mCodeScanner;
+            if (scanner == null || !scanner.isFlashSupportedOrUnknown()) {
+                return;
+            }
+            final boolean enabled = !scanner.isFlashEnabled();
+            scanner.setFlashEnabled(enabled);
+            setFlashEnabled(enabled);
+        }
+    }
+
+
+
+
+
+
 }
